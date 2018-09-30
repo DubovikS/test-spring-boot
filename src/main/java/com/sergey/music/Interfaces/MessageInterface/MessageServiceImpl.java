@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class MessageInterfaceImpl implements MessageInterface{
+public class MessageServiceImpl implements MessageInterface{
 
     @Autowired
     MessageRepository messageRepository;
