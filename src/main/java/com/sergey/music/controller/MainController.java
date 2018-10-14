@@ -1,6 +1,7 @@
-package com.sergey.music;
+package com.sergey.music.controller;
 
 import antlr.StringUtils;
+import com.sergey.music.Common;
 import com.sergey.music.Interfaces.MessageInterface.MessageInterface;
 import com.sergey.music.entity.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,25 +20,18 @@ public class MainController {
     @Autowired
     MessageInterface messageInterface;
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "info";
-    }
-
-    @GetMapping("/greetingMustache")
-    public String greetingMustache(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Map<String, Object> model) {
-        model.put("name", name);
+    @GetMapping("/")
+    public String greeting(Map<String, Object> model) {
         return "greeting";
     }
 
-    @GetMapping
+    @GetMapping("/main")
     public String main(Map<String, Object> model) {
         model.put("messages", messageInterface.findAll());
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("/main")
     public String addMessage(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
         Message message = new Message(text, tag);
         if (Common.notEmpty(text) && Common.notEmpty(tag)) {
