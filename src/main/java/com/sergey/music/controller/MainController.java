@@ -22,7 +22,7 @@ public class MainController {
 
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
-        return "greeting";
+        return "index";
     }
 
     @GetMapping("/main")
@@ -41,6 +41,11 @@ public class MainController {
         List<Message> messageList = messageInterface.findAll();
         model.put("messages", messageList);
         return "main";
+    }
+
+    @GetMapping("/nails")
+    public String nails(Map<String, Object> model) {
+        return "index";
     }
 
 
